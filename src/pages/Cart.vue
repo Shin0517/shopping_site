@@ -27,50 +27,49 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            cart: [],
-        };
-    },
-    methods: {
-        loadCart() {
-            this.cart = JSON.parse(localStorage.getItem("cart")) || [];
+    export default {
+        data() {
+            return {
+                cart: [],
+            };
         },
-        updateQuantity(id, change) {
-            let item = this.cart.find(product => product.id === id);
-            if (!item) return;
+        methods: {
+            loadCart() {
+                this.cart = JSON.parse(localStorage.getItem("cart")) || [];
+            },
+            updateQuantity(id, change) {
+                let item = this.cart.find(product => product.id === id);
+                if (!item) return;
 
-            item.quantity += change;
-            if (item.quantity < 1) {
-                this.removeFromCart(id);
-            } else {
+                item.quantity += change;
+                if (item.quantity < 1) {
+                    this.removeFromCart(id);
+                } else {
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                }
+            },
+            removeFromCart(id) {
+                this.cart = this.cart.filter(item => item.id !== id);
                 localStorage.setItem("cart", JSON.stringify(this.cart));
+            },
+            calculateItemTotal(item) {
+                return (parseFloat(item.price.replace("$", "")) * item.quantity).toFixed(2);
+            },
+            calculateTotal() {
+                return this.cart
+                .reduce((total, item) => total + parseFloat(this.calculateItemTotal(item)), 0)
+                .toFixed(2);
+            },
+            checkout() {
+                if (this.cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
             }
+            this.$router.push("/checkout");
+            },
         },
-        removeFromCart(id) {
-            this.cart = this.cart.filter(item => item.id !== id);
-            localStorage.setItem("cart", JSON.stringify(this.cart));
-        },
-        calculateItemTotal(item) {
-            return (parseFloat(item.price.replace("$", "")) * item.quantity).toFixed(2);
-        },
-        calculateTotal() {
-            return this.cart
-            .reduce((total, item) => total + parseFloat(this.calculateItemTotal(item)), 0)
-            .toFixed(2);
-        },
-        checkout() {
-            if (this.cart.length === 0) {
-            alert("Your cart is empty!");
-            return;
+        mounted() {
+            this.loadCart();
         }
-        this.$router.push("/checkout");
-        },
-    },
-    mounted() {
-        this.loadCart();
-    }
-};
+    };
 </script>
-  
