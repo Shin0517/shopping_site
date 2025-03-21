@@ -1,10 +1,11 @@
+還有這個
 <template>
-    <div class="container mx-auto p-4">
+    <div class="mt-20 container mx-auto p-4">
     <h1 class="text-3xl font-bold">Shopping Cart</h1>
 
     <div v-if="cart.length">
     <div v-for="item in cart" :key="item.id" class="flex items-center justify-between p-4 border-b bg-white rounded-md shadow-md">
-        <img :src="item.image" alt="Product Image" class="w-16 h-16 object-cover rounded-md">
+        <img :src="item.image_url" alt="Product Image" class="w-16 h-16 object-cover rounded-md">
         <span class="text-lg font-medium">{{ item.name }}</span>
         <span class="text-gray-700">{{ item.price }}</span>
         <div class="flex items-center">
@@ -16,10 +17,27 @@
         <button @click="removeFromCart(item.id)" class="text-red-500">Remove</button>
     </div>
 
-        <div class="text-right mt-6">
-            <h2 class="text-2xl font-bold">Total: ${{ calculateTotal() }}</h2>
-            <button @click="checkout" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Proceed to Checkout</button>
-        </div>
+    <div class="text-right mt-6 relative">
+    <h2 class="text-2xl font-bold">Total: ${{ calculateTotal() }}</h2>
+
+    <div v-if="parseFloat(calculateTotal()) < 10000" class="mt-2">
+        <img
+            src="https://media.tenor.com/yIWyg_2g9EgAAAAM/feyresmaid.gif"
+            alt="Animated GIF"
+            class="w-64 h-auto inline-block"
+        />
+    </div>
+
+    <button
+        @click="checkout"
+        class="mt-4 px-4 py-2 bg-[#A59482] text-white rounded absolute transition-all duration-300 whitespace-nowrap"
+        :style="{ top: buttonPosition.top + 'px', left: buttonPosition.left + 'px' }"
+        @mouseover="moveButton"
+    >
+        💰 Give me money 💰
+    </button>
+</div>
+
     </div>
 
     <p v-else class="text-gray-500">Your cart is empty.</p>
@@ -31,6 +49,7 @@
         data() {
             return {
                 cart: [],
+                buttonPosition: { top: 275, left: 1400 }, 
             };
         },
         methods: {
@@ -62,11 +81,21 @@
             },
             checkout() {
                 if (this.cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
-            this.$router.push("/checkout");
+                    alert("Your cart is empty!");
+                    return;
+                }
+                if (parseFloat(this.calculateTotal()) < 10000) {
+                    alert("You poor!");
+                    return;
+                }
+                this.$router.push("/checkout");
             },
+            moveButton() {
+            if (parseFloat(this.calculateTotal()) < 10000) {
+                this.buttonPosition.top = Math.random() * window.innerHeight * 0.8;
+                this.buttonPosition.left = Math.random() * window.innerWidth * 0.8;
+            }
+        },
         },
         mounted() {
             this.loadCart();

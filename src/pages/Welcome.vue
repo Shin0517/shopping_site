@@ -1,15 +1,15 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-        <h1 class="text-4xl font-bold text-blue-600">Welcome to MyShop</h1>
-        <p class="text-gray-700 text-lg mt-2">Discover the best products at unbeatable prices!</p>
-        
-        <img src="..\assets\images\5e7b2bb5-f44b-4ab6-8384-2e56c1d9f478.png" alt="Shop Banner" class="mt-6 w-3/4 max-w-lg rounded-lg shadow-lg" />
-        
+    <div class="flex flex-col items-center justify-center min-h-screen bg-[#EAE5DE] p-6">
+        <h1 class="text-4xl font-bold text-[#876D5A]">
+            Welcome to OIIAI🐈
+            <img src="https://images.squarespace-cdn.com/content/v1/663f738a89dc02694adb8670/ab586c91-6b0b-4791-aa5a-b60824f92094/OIIA-Website-loop.gif" alt="Animated GIF" class="w-100 h-100 ml-2" />
+        </h1>
+        <p class="text-gray-700 text-lg mt-2">Swing by our shop and take a look 🥴</p>
+                
         <router-link to="/home">
-            <button class="mt-6 px-6 py-3 bg-blue-500 text-white text-lg rounded-lg shadow hover:bg-blue-600">
-                Start Shopping!
+            <button class="mt-16 px-6 py-3 bg-[#A59482] text-white text-lg rounded-lg shadow hover:bg-[#BBA78F]">
+                Start Spinning!
             </button>
         </router-link>
     </div>
 </template>
-    

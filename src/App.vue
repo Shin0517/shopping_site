@@ -1,7 +1,7 @@
 <template>
     <div>
-        <nav class="bg-white shadow-md p-4 flex justify-between items-center">
-            <router-link to="/" class="text-2xl font-bold text-blue-600">MyShop</router-link>
+        <nav class="fixed top-0 left-0 w-full bg-[#EAE5DE] shadow-md p-4 flex justify-between items-center">
+            <router-link to="/" class="text-2xl font-bold text-[#876D5A]">OIIAI🐈</router-link>
             <div class="flex items-center space-x-4">
                 <router-link to="/" class="nav-link">Welcome</router-link>
                 <router-link to="/home" class="nav-link">Shop</router-link>
@@ -61,7 +61,7 @@
 
 <style>
     .nav-link {
-        @apply text-gray-700 hover:text-blue-500 transition font-medium;
+        @apply text-gray-700 hover:text-[#A59482] transition font-medium;
     }
     .cart-badge {
         @apply absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full;
