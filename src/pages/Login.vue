@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded">
+    <div class="mt-20 max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded">
         <h1 class="text-2xl font-semibold text-center">{{ isRegistering ? "Register" : "Login" }}</h1>
         
         <form @submit.prevent="handleSubmit" class="mt-4">

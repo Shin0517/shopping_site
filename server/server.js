@@ -5,15 +5,13 @@ require("dotenv").config();
 
 const orderRoutes = require("./routes/orders"); 
 const authRoutes = require("./routes/auth");  
-const cartRoutes = require("./routes/cart");
-
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use("/api/orders", orderRoutes);
 app.use("/api/auth", authRoutes); 
-app.use("/api/cart", cartRoutes);
+// app.use("/api/cart", cartRoutes);
 
 const PORT = process.env.PORT || 3001;
 
